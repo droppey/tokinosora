@@ -19,8 +19,8 @@ async def on_ready():
 @bot.command(pass_context = True)
 @commands.is_owner()
 async def load(ctx, ext):
-        await ctx.send(f'{ext} loaded')
-        await bot.load_extension(f'cogs.{ext}')
+    await ctx.send(f'{ext} loaded')
+    await bot.load_extension(f'cogs.{ext}')
 
 @bot.command()
 @commands.is_owner()
