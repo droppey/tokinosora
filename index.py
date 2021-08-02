@@ -3,7 +3,10 @@ import discord
 import json
 import os
 
-with open(r'C:\Users\WIN10\Desktop\discord\.gitignore\config.json','r',encoding="utf8") as jfile:
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+with open(os.path.join(__location__, 'config.json'),'r',encoding="utf8") as jfile:
     jdata = json.load(jfile)
 
 bot = commands.Bot(command_prefix=jdata['prefix'], help_command=None)
@@ -31,7 +34,7 @@ async def reload(ctx, ext):
     await ctx.send(f'{ext} reloaded')
     await bot.reload_extension(f'cogs.{ext}') 
 
-for filename in os.listdir(r'C:\Users\WIN10\Desktop\discord\cogs'):
+for filename in os.listdir(os.path.join(__location__, 'cogs')):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
