@@ -1,6 +1,10 @@
 from discord.ext import commands
 import random
 import discord
+import os
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 class reaction(commands.Cog):
     def __init__(self, bot):
@@ -18,9 +22,9 @@ class reaction(commands.Cog):
         if msg.content == '電' or msg.content == '電神' or msg.content == '⚡' or msg.content == 'electric' or msg.content == 'zap' :
             prob = random.randrange(11)
             if prob == 10:
-                author = msg.author
-                await msg.channel.send(f'好了啦{author}, 您別再謙虛啦')
-                await msg.channel.send(file=discord.File(r'C:\Users\WIN10\Desktop\discord\好了啦.png'))
+                author = msg.author.id
+                await msg.channel.send(f'好了啦<@{author}>, 您別再謙虛啦')
+                await msg.channel.send(f'https://cdn.discordapp.com/attachments/870138830949322783/871658780994207784/e59f99e3afae06b6.png')
                 await msg.add_reaction('❓')
             else:
                 await msg.add_reaction('❓')
