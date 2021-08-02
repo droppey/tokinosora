@@ -42,7 +42,6 @@ class reaction(commands.Cog):
                 await msg.add_reaction('❓')
             else:
                 await msg.add_reaction('❓')
-            await msg.add_reaction('❓')
 
         if msg.content == '嗯' or msg.content == '恩':
             author = msg.author.id
