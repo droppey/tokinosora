@@ -13,11 +13,14 @@ class reaction(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, msg):
 
-        if msg.content == '雄中電神':
-            if msg.author == self.bot.user:
-                await msg.channel.send('幹破您娘機掰 宜中,中科御用生,關西電神 一個個都比老子電')
-            else:
-                await msg.channel.send('您才電 哀')
+        if msg.content == '相比西南第一高中的大學長，輸了輸了QQ':
+                await msg.channel.send('幹破您娘機掰 高雄學店被您屌虐')
+                await msg.add_reaction('🖕')
+                await msg.add_reaction('<:Seya0:871252213488582676>')
+                
+        if msg.content == '您真愛說笑，關西電神':
+                await msg.channel.send('宜中電神瘋起來連自己都嘲諷 哀')
+                await msg.add_reaction('<:ran:869589093372289084>')
 
         if msg.content == '電' or msg.content == '電神' or msg.content == '⚡' or msg.content == 'electric' or msg.content == 'zap' :
             prob = random.randrange(11)
