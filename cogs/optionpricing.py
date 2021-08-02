@@ -17,7 +17,7 @@ def fcall(S, K, T, r, sigma):
     d1 = (np.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     d2 = (np.log(S / K) + (r - 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     
-    call = (S * si.norm.cdf(d1, 0.0, 1.0) - K * np.exp(-r * T) * si.norm.cdf(d2, 0.0, 1.0))
+    call = format((S * si.norm.cdf(d1, 0.0, 1.0) - K * np.exp(-r * T) * si.norm.cdf(d2, 0.0, 1.0)), '.2f')
     
     return call
 
@@ -32,10 +32,14 @@ def fput(S, K, T, r, sigma):
     d1 = (np.log(S / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     d2 = (np.log(S / K) + (r - 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     
-    put = (K * np.exp(-r * T) * si.norm.cdf(-d2, 0.0, 1.0) - S * si.norm.cdf(-d1, 0.0, 1.0))
+    put = format((K * np.exp(-r * T) * si.norm.cdf(-d2, 0.0, 1.0) - S * si.norm.cdf(-d1, 0.0, 1.0)), '.2f')
     
     return put
 
+def fdty(D):
+
+    Y = format(D/365, '.5f')
+    return Y
 
 class optionpricing(commands.Cog):
     def __init__(self, bot):
@@ -45,13 +49,15 @@ class optionpricing(commands.Cog):
     async def call(self, ctx, S: float, K: float, T: float, r: float, sigma: float):
         await ctx.send(f'Price: {fcall(S, K, T, r, sigma)}')
 
-class optionpricing(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
     @commands.command()
     async def put(self, ctx, S: float, K: float, T: float, r: float, sigma: float):
         await ctx.send(f'Price: {fput(S, K, T, r, sigma)}')
+
+
+    @commands.command()
+    async def dty(self, ctx, d : float):
+        await ctx.send(f'{fdty(d)}')
+
 def setup(bot):
     bot.add_cog(optionpricing(bot))
 
