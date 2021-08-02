@@ -52,7 +52,7 @@ class reaction(commands.Cog):
         if msg.content.find('peko') != -1:
             prob = random.randrange(11)
             if prob == 10:
-                await msg.channel.send(f'好油喔，我都不看這些的Peko <:ha:869872948503257101>')
+                await msg.channel.send(f'好油ㄛ，我都不看這些的Peko <:ha:869872948503257101>')
             await msg.add_reaction('🈳')
             await msg.add_reaction('🇵')
             await msg.add_reaction('🇪')
