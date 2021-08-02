@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from discord.ext import commands
+import discord
 
 def conv_to_list(obj):
     '''
@@ -72,14 +73,19 @@ data = df_conv_col_type(df=data,
 
 data = data.drop(['TRADE_VALUE', 'OPEN', 'HIGH', 'LOW', 'TRANSACTION'], axis=1)
 
-
 class stock(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     async def stock(self, ctx, stock):
-        await ctx.send('```\n' + str(data.loc[data['STOCK_SYMBOL'] == stock]) + '\n```')
+        bruh = ("%.2f%%" % (100 * float(data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False)) / (float(data.loc[data['STOCK_SYMBOL'] == stock].CLOSE.to_string(index=False)) + float(data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False)))))
+        embed = discord.Embed(title=data.loc[data['STOCK_SYMBOL'] == stock].NAME.to_string(index=False), description= str(stock), colour=np.random.randint(0, 16777215))
+        embed.add_field(name="成交股數", value=data.loc[data['STOCK_SYMBOL'] == stock].VOLUME.to_string(index=False), inline=False)
+        embed.add_field(name="收盤價", value=data.loc[data['STOCK_SYMBOL'] == stock].CLOSE.to_string(index=False), inline=False)
+        embed.add_field(name="漲跌", value=data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False), inline=False)
+        embed.add_field(name="漲跌幅", value=bruh, inline=False)
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(stock(bot))
