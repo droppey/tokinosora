@@ -19,7 +19,7 @@ class copy(commands.Cog):
     @commands.command()
     async def 約嗎(self, ctx):
         await ctx.send(r'嗨 女朋友約嗎')
-        await ctx.send(r'保證讓你幸福的不要不要的 ok的 ')
+        await ctx.send(r'保證讓你幸福的不要不要的 okㄉ ')
         await ctx.send(r'好天氣再一起出來玩喔 等你')
         await ctx.send(r'看 我新裝的尾蓋 帥嗎') 
         await ctx.send(r'ㄎㄎ好啦 只約女朋友 女朋友約嗎')
