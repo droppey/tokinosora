@@ -21,8 +21,10 @@ class reaction(commands.Cog):
 
         if msg.content == '電' or msg.content == '電神' or msg.content == '⚡' or msg.content == 'electric' or msg.content == 'zap' :
             prob = random.randrange(11)
-            if prob == 10:
-                author = msg.author.id
+            author = msg.author.id
+            if author == 366865049949569024:
+                await msg.channel.send("⚡⚡電⚡⚡")
+            elif prob == 10:
                 await msg.channel.send(f'好了啦<@{author}>, 您別再謙虛啦')
                 await msg.channel.send(f'https://cdn.discordapp.com/attachments/870138830949322783/871658780994207784/e59f99e3afae06b6.png')
                 await msg.add_reaction('❓')
