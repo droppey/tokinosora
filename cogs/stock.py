@@ -77,8 +77,9 @@ class stock(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def stock(self, ctx, stock):
+    @commands.command(name='stock')
+    async def stock(self, ctx, stock = None):
+        if stock == None: return await ctx.send("🈹，你的股票代碼要給。")
         bruh = ("%.2f%%" % (100 * float(data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False)) / (float(data.loc[data['STOCK_SYMBOL'] == stock].CLOSE.to_string(index=False)) + float(data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False)))))
         embed = discord.Embed(title=data.loc[data['STOCK_SYMBOL'] == stock].NAME.to_string(index=False), description= str(stock), colour=np.random.randint(0, 16777215))
         embed.add_field(name="成交股數", value=data.loc[data['STOCK_SYMBOL'] == stock].VOLUME.to_string(index=False), inline=False)
@@ -86,6 +87,7 @@ class stock(commands.Cog):
         embed.add_field(name="漲跌", value=data.loc[data['STOCK_SYMBOL'] == stock].PRICE_CHANGE.to_string(index=False), inline=False)
         embed.add_field(name="漲跌幅", value=bruh, inline=False)
         await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(stock(bot))
