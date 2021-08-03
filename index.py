@@ -15,6 +15,10 @@ bot = commands.Bot(command_prefix=jdata['prefix'], help_command=None)
 async def on_ready():
     print('{0.user}起床囉'.format(bot))
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="我最愛的0瘋⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄"))
+    
+    print('Servers connected to:')
+    for guild in bot.guilds:
+        print(guild.name)
 
 @bot.command(pass_context = True)
 @commands.is_owner()
