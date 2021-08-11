@@ -42,6 +42,12 @@ class reaction(commands.Cog):
             else:
                 await msg.add_reaction('❓')
 
+
+        if msg.content == 'tf':
+            author = msg.author.id
+            await msg.channel.send(f'<@{author}>講人話喇幹')
+            await msg.add_reaction('❓')
+
         if msg.content == '?' or msg.content == '???' or msg.content == '？':
             prob = random.randrange(11)
             if prob == 10:
